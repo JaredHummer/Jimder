@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { token } from 'morgan';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,13 +10,35 @@ import { Router } from '@angular/router';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  username: string = "";
+  password: string = "";
+  confirm: string = "";
+
+  constructor(private router: Router, private accountService: AccountService) { }
 
   ngOnInit(): void {
   }
 
   signUp() {
-    this.router.navigateByUrl("/profile-editor");
+    if (this.password != this.confirm) {
+      alert("password doesn't match");
+      return;
+    }
+
+    let res = this.accountService.signUp(this.username, this.password);
+
+    res.subscribe((response: any) => {
+      console.log(response);
+      if (response.success) {
+        this.router.navigateByUrl("/profile-editor");
+        localStorage.setItem('token', response.token);
+      } else {
+        alert(response.error);
+      }
+    })
+
+    console.log(res);
+
   }
 
 }

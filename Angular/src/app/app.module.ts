@@ -15,6 +15,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { MyHammerConfig } from './my-hammer.config';
 import { StoreModule } from "@ngrx/store";
 import { MatchesComponent } from './matches/matches.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatchesComponent } from './matches/matches.component';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    StoreModule
+    StoreModule,
+    FormsModule
   ],
   providers: [
     {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-swiping',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SwipingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -18,6 +19,10 @@ export class SwipingComponent implements OnInit {
 
   dont() {
     console.log("dont");
+  }
+
+  showMatches() {
+    this.router.navigateByUrl("/matches");
   }
 
 }

@@ -1,9 +1,9 @@
 <div class="body">
   <div class="form">
     <label for="">Email</label>
-    <input type="text">
+    <input [(ngModel)]="username" type="text">
     <label for="">Password</label>
-    <input type="text">
+    <input [(ngModel)]="password" type="text">
     <button (click)="login()">Login</button>
   </div>
 </div>

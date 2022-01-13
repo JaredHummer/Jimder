@@ -12,4 +12,12 @@ export class SwipingComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  swipeLeft() {
+    console.log("swiped left");
+  }
+
+  dont() {
+    console.log("dont");
+  }
+
 }

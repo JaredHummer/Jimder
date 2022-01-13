@@ -11,6 +11,10 @@ import { ProfileEditorComponent } from './profile-editor/profile-editor.componen
 import { LandingComponent } from './landing/landing.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { MyHammerConfig } from './my-hammer.config';
+import { StoreModule } from "@ngrx/store";
+import { MatchesComponent } from './matches/matches.component';
 
 @NgModule({
   declarations: [
@@ -20,15 +24,22 @@ import { HttpClientModule } from '@angular/common/http';
     SignInComponent,
     SwipingComponent,
     ProfileEditorComponent,
-    LandingComponent
+    LandingComponent,
+    MatchesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

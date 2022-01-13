@@ -7,7 +7,7 @@
         <div>{{ category.name }}</div>
       </div>
       <div *ngIf="category.enabled">
-        <input type="textarea">
+        <input [(ngModel)]="category.description" type="textarea">
       </div>
     </div>
   </div>

@@ -27,6 +27,13 @@ export class AccountService {
       .pipe(catchError(this.errorhandler))
   }
 
+  nextPerson() {
+    let headers = new HttpHeaders().set("Accept", "*/*").set("Authorization", localStorage.getItem("token") || "");
+
+    return this.http.post(environment.apiUrl + EndPoints.nextPerson, {}, {headers})
+      .pipe(catchError(this.errorhandler))
+  }
+
 
 
   errorhandler(error: any) {

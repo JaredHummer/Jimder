@@ -1,1 +1,14 @@
-<p>profile-editor works!</p>
+<div class="body">
+  <h1>What are your hobbies?</h1>
+  <div class="hobbies">
+    <div class="hobby" *ngFor="let category of categories">
+      <div class="checking">
+        <input (click)="toggleCategory(category)" type="checkbox">
+        <div>{{ category.name }}</div>
+      </div>
+      <div *ngIf="category.enabled">
+        <input type="textarea">
+      </div>
+    </div>
+  </div>
+</div>

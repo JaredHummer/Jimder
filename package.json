@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "argon2": "^0.28.3",
+    "bootstrap": "^5.1.3",
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.3.0",

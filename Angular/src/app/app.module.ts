@@ -9,6 +9,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SwipingComponent } from './swiping/swiping.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
 import { LandingComponent } from './landing/landing.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { LandingComponent } from './landing/landing.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

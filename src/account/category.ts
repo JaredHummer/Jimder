@@ -36,7 +36,9 @@ export const postCategory = async (request: Request, response: Response) => {
     const body = parse.data;
     const client = await pool.connect();
 
-    if ((await client.query("select category_id from category where category_id = $1", [body.categoryId])).rows.length === 0) {
+    console.log(body);
+
+    if ((await client.query("select id from category where id = $1", [body.categoryId])).rows.length === 0) {
         client.release();
 
         response.status(400);
@@ -47,8 +49,10 @@ export const postCategory = async (request: Request, response: Response) => {
         return;
     }
 
+    console.log(accountId);
+
     await pool.query(
-        "insert into account_category (account_id, category_id, enabled, description) ($1, $2, $3, $4) on conflict do update set enabled = $3, description = $4",
+        "insert into account_category (account_id, category_id, enabled, description) values ($1, $2, $3, $4) on conflict (account_id, category_id) do update set enabled = $3, description = $4",
         [accountId, body.categoryId, body.enabled, body.description],
     );
     client.release();
@@ -61,7 +65,7 @@ export const postCategory = async (request: Request, response: Response) => {
 };
 
 const getSchema = z.object({
-    categoryId: z.number().positive().int(),
+    categoryId: z.string().transform((val) => parseInt(val))
 });
 
 export const getCategory = async (request: Request, response: Response) => {
@@ -76,7 +80,11 @@ export const getCategory = async (request: Request, response: Response) => {
         return;
     }
 
+    console.log(request.query)
+
     const parse = getSchema.safeParse(request.query);
+
+    console.log(parse);
 
     if (!parse.success) {
         response.status(400);
@@ -90,7 +98,7 @@ export const getCategory = async (request: Request, response: Response) => {
     const query = parse.data;
     const client = await pool.connect();
 
-    if ((await client.query("select category_id from category where category_id = $1", [query.categoryId])).rows.length === 0) {
+    if ((await client.query("select id from category where id = $1", [query.categoryId])).rows.length === 0) {
         client.release();
 
         response.status(400);
@@ -102,7 +110,7 @@ export const getCategory = async (request: Request, response: Response) => {
     }
 
     const result = await client.query(
-        "select enabled, description from account_category where account_id = $1 and category_id = $2",
+        "select enabled, description from account_category where account_id = $1 and id = $2",
         [accountId, query.categoryId],
     );
     client.release();
@@ -116,7 +124,7 @@ export const getCategory = async (request: Request, response: Response) => {
         return;
     }
 
-    const [enabled, description] = result.rows[0];
+    const [enabled, description] = [result.rows[0].enabled, result.rows[0].description];
 
     response.status(200);
     response.json({

@@ -33,7 +33,9 @@ export const login = async (request: Request, response: Response) => {
         return;
     }
 
-    const [id, hash] = result.rows[0];
+    console.log(result.rows[0]);
+    const hash = result.rows[0].password;
+    const id = result.rows[0].id;
 
     if (!verifyPassword(body.password, hash)) {
         response.status(401);

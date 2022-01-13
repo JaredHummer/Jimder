@@ -6,12 +6,12 @@
 
     <div class="inputItem">
       <label for="username">Email</label>
-      <input type="text" placeholder="email@example.com">
+      <input [(ngModel)]="username" type="text" placeholder="email@example.com">
     </div>
 
     <div class="inputItem">
       <label for="password">Password</label>
-      <input type="text">
+      <input [(ngModel)]="password" type="text">
     </div>
 
     <button mat-raised-button color="primary" (click)="login()">Login</button>

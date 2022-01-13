@@ -1,11 +1,17 @@
 <div class="body">
-  <img class="main-image" src="..." alt="">
+  <img (swipeleft)="swipeLeft()" class="main-image" src="..." alt="">
   <div class="footer">
-    <button>
-      match
-    </button>
-    <button>
-      dont
-    </button>
+    <div class="buttons">
+      <button (click)="dont()">
+        dont
+      </button>
+      <button (click)="showMatches()">
+        matches
+      </button>
+      <button>
+        match
+      </button>
+    </div>
+
   </div>
 </div>

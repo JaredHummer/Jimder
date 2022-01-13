@@ -1,3 +1,5 @@
+import { Category } from "./Category";
+
 export interface Account {
   id: number;
   username: string;

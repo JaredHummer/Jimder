@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
+import { MatchesComponent } from './matches/matches.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'swiping', component: SwipingComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'profile-editor', component: ProfileEditorComponent }
+  { path: 'profile-editor', component: ProfileEditorComponent },
+  { path: 'matches', component: MatchesComponent }
 ];
 
 @NgModule({

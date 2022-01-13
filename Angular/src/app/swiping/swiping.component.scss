@@ -4,8 +4,16 @@
     height: 95%;
     width: 100%;
     border-radius: 1rem;
-    button {
-      width: 50%;
+
+  }
+  .footer {
+    height: 5%;
+    .buttons {
+      height: 100%;
+      button {
+        height: 100%;
+        width: 33.33%;
+      }
     }
   }
 }

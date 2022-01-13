@@ -1,11 +1,11 @@
 <div class="body">
   <div class="inputs">
     <label for="username">Username</label>
-    <input type="text">
+    <input [(ngModel)]="username" type="text">
     <label for="password">Password</label>
-    <input type="text">
+    <input [(ngModel)]="password" type="text">
     <label for="confirm-password">Confirm Password</label>
-    <input type="text">
+    <input [(ngModel)]="confirm" type="text">
     <button (click)="signUp()">Sign Up</button>
   </div>
 

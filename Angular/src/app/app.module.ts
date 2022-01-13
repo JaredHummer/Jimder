@@ -16,6 +16,8 @@ import { MyHammerConfig } from './my-hammer.config';
 import { StoreModule } from "@ngrx/store";
 import { MatchesComponent } from './matches/matches.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { FormsModule } from '@angular/forms';
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig,
     }
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   bootstrap: [AppComponent]
 })

@@ -1,31 +1,36 @@
 version: '3.1'
 
 services:
-    postgres:
-        image: postgres
-        restart: always
-        environment:
-            POSTGRES_PASSWORD: password
-        volumes:
-            - ./initdb:/docker-entrypoint-initdb.d
+    # postgres:
+    #     image: postgres
+    #     restart: always
+    #     environment:
+    #         POSTGRES_PASSWORD: password
+    #     volumes:
+    #         - ./initdb:/docker-entrypoint-initdb.d
 
     adminer:
         image: adminer
         restart: always
         ports:
-        - 127.0.0.1:9002:9002
+            - 127.0.0.1:9002:9002
 
     server:
         build: .
         environment:
-            PGHOST:     postgres
-            PGPORT:     5432
+            PGHOST: 35.231.132.216
+            PGPORT: 5432
             PGDATABASE: postgres
-            PGUSER:     postgres
-            PGPASSWORD: password
-        depends_on:
-            - postgres
+            PGUSER: postgres
+            PGPASSWORD: jinderDaBest
+        # depends_on:
+        #     - postgres
         ports:
-            - 127.0.0.1:9001:8000
+            - 9001:8000
+            - 9229:9229
+        command:
+            - node
+            - "--inspect-brk=0.0.0.0"
+            - "."
         volumes:
             - ./secrets:/secrets

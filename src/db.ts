@@ -1,19 +1,8 @@
 import { Pool } from "pg";
 
 export const pool = new Pool({
-    idleTimeoutMillis: 0
+    idleTimeoutMillis: 0,
+    host: "35.231.132.216",
+    user: "postgres",
+    password: "jinderDaBest"
 });
-
-export interface Account {
-    id:         number,
-    username:   string,
-    password:   string,
-}
-
-export interface AccountCategory {
-    id:          number,
-    account_id:  number,
-    category_id: number,
-    enabled:     boolean,
-    description: string,
-}

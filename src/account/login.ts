@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
-import { verify } from "argon2";
-import { sign } from "jsonwebtoken";
-import { readFile } from "fs/promises";
 import { z } from "zod";
 import { pool } from "@/db";
 import { signAccount } from "@/jwt-util";
+import { verifyPassword } from "@/pwd-util";
 
 const schema = z.object({
     username: z.string(),
@@ -35,9 +33,11 @@ export const login = async (request: Request, response: Response) => {
         return;
     }
 
-    const [id, hash] = result.rows[0];
+    console.log(result.rows[0]);
+    const hash = result.rows[0].password;
+    const id = result.rows[0].id;
 
-    if (!verify(hash, body.password)) {
+    if (!verifyPassword(body.password, hash)) {
         response.status(401);
         response.json({
             success: false,
@@ -48,6 +48,7 @@ export const login = async (request: Request, response: Response) => {
 
     response.status(200);
     response.json({
+        success: true,
         token: signAccount(id),
     });
 };

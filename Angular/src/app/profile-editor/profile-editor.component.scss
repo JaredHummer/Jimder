@@ -1,0 +1,16 @@
+.body {
+  width: 100vw;
+  height: 100vh;
+  .hobbies {
+    display: table;
+    flex-direction: column;
+  }
+  .hobby {
+    width: 100%;
+    justify-content: space-around;
+    .checking {
+      display: flex;
+      width: 100%;
+    }
+  }
+}

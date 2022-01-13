@@ -15,9 +15,9 @@ account.post("/create",   create);
 account.post("/login",    login);
 
 account.get("/", async (request: Request, response: Response) => {
-    const account_id = verifyAccount(request.header("authorization") ?? "");
+    const accountId = verifyAccount(request.header("authorization") ?? "");
 
-    if (account_id === null) {
+    if (accountId === null) {
         response.status(401);
         response.json({
             success: false,
@@ -26,7 +26,7 @@ account.get("/", async (request: Request, response: Response) => {
         return;
     }
 
-    const result = await pool.query("select username, picture_url, description, contact_info from account where id = $1", [account_id]);
+    const result = await pool.query("select username, picture_url, description, contact_info from account where id = $1", [accountId]);
     const [username, pictureUrl, description, contactInfo] = result.rows[0];
 
     response.status(200);

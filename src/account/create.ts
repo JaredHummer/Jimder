@@ -4,6 +4,7 @@ import { hash, argon2id } from "argon2";
 
 import { pool } from "@/db";
 import { hashPassword } from "@/pwd-util";
+import { signAccount } from "@/jwt-util";
 
 const schema = z.object({
     username: z.string(),
@@ -38,7 +39,7 @@ export const create = async (request: Request, response: Response) => {
         return;
     }
 
-    const hash = hashPassword(body.password);
+    const hash = await hashPassword(body.password);
 
     if (hash === null) {
         response.status(400);
@@ -50,7 +51,7 @@ export const create = async (request: Request, response: Response) => {
     }
 
     const result = await pool.query(
-        "insert into account (username, password, picture_url, description, contact_info) values ($1, $2, $3, '', '') on conflict do nothing;",
+        "insert into account (username, password, picture_url, description, contact_info) values ($1, $2, $3, '', '') on conflict do nothing returning id",
         [body.username, hash, randomPictureUrl()]
     );
 
@@ -63,8 +64,11 @@ export const create = async (request: Request, response: Response) => {
         return;
     }
 
+    const [id] = result.rows[0];
+
     response.status(200);
     response.json({
         success: true,
+        token: signAccount(id),
     });
 };

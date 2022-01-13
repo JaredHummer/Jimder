@@ -5,15 +5,15 @@ import { verifyAccount } from "@/jwt-util";
 import { pool } from "@/db";
 
 const postSchema = z.object({
-    category_id: z.number().positive().int(),
+    categoryId:  z.number().positive().int(),
     enabled:     z.boolean(),
     description: z.string(),
 });
 
 export const postCategory = async (request: Request, response: Response) => {
-    const account_id = verifyAccount(request.header("authorization") ?? "");
+    const accountId = verifyAccount(request.header("authorization") ?? "");
 
-    if (account_id === null) {
+    if (accountId === null) {
         response.status(401);
         response.json({
             success: false,
@@ -36,7 +36,7 @@ export const postCategory = async (request: Request, response: Response) => {
     const body = parse.data;
     const client = await pool.connect();
 
-    if ((await client.query("select category_id from category where category_id = $1", [body.category_id])).rows.length === 0) {
+    if ((await client.query("select category_id from category where category_id = $1", [body.categoryId])).rows.length === 0) {
         client.release();
 
         response.status(400);
@@ -49,7 +49,7 @@ export const postCategory = async (request: Request, response: Response) => {
 
     await pool.query(
         "insert into account_category (account_id, category_id, enabled, description) ($1, $2, $3, $4) on conflict do update set enabled = $3, description = $4",
-        [account_id, body.category_id, body.enabled, body.description],
+        [accountId, body.categoryId, body.enabled, body.description],
     );
     client.release();
 

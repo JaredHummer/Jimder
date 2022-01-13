@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { hash, argon2id } from "argon2";
 
-import { Account, AccountCategory, pool } from "@/db";
 import { verifyAccount } from "@/jwt-util";
+import { pool } from "@/db";
 
 const postSchema = z.object({
     category_id: z.number().positive().int(),
@@ -61,14 +60,14 @@ export const postCategory = async (request: Request, response: Response) => {
     return;
 };
 
-const querySchema = z.object({
-    category_id: z.number().positive().int(),
+const getSchema = z.object({
+    categoryId: z.number().positive().int(),
 });
 
 export const getCategory = async (request: Request, response: Response) => {
-    const account_id = verifyAccount(request.header("authorization") ?? "");
+    const accountId = verifyAccount(request.header("authorization") ?? "");
 
-    if (account_id === null) {
+    if (accountId === null) {
         response.status(401);
         response.json({
             success: false,
@@ -77,7 +76,7 @@ export const getCategory = async (request: Request, response: Response) => {
         return;
     }
 
-    const parse = postSchema.safeParse(request.query);
+    const parse = getSchema.safeParse(request.query);
 
     if (!parse.success) {
         response.status(400);
@@ -91,7 +90,7 @@ export const getCategory = async (request: Request, response: Response) => {
     const query = parse.data;
     const client = await pool.connect();
 
-    if ((await client.query("select category_id from category where category_id = $1", [query.category_id])).rows.length === 0) {
+    if ((await client.query("select category_id from category where category_id = $1", [query.categoryId])).rows.length === 0) {
         client.release();
 
         response.status(400);
@@ -104,7 +103,7 @@ export const getCategory = async (request: Request, response: Response) => {
 
     const result = await client.query(
         "select enabled, description from account_category where account_id = $1 and category_id = $2",
-        [account_id, query.category_id],
+        [accountId, query.categoryId],
     );
     client.release();
 

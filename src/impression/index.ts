@@ -12,6 +12,7 @@ const schema = z.object({
 });
 
 account.post("/next", next);
+
 account.get("/", async (request: Request, response: Response) => {
     const accountId = verifyAccount(request.header("authorization") ?? "");
 
@@ -52,9 +53,38 @@ account.get("/", async (request: Request, response: Response) => {
         return;
     }
 
-    const result = await client.query("select username, picture_url, description, contact_info, accepted from account join impression on account_id = subject_id where ")
+    const result = await client.query(
+        `
+            select  username,
+                    picture_url,
+                    description,
+                    contact_info,
+                    exists(select 1 from impression b where b.id = a.inverse_id and b.accepted = true)
+                from account
+                join impression a on account.id = subject_id
+            where receiver_id = $1
+              and accepted != false
+        `,
+        [accountId],
+    )
 
-    const [username, pictureUrl, description, contactInfo] = result.rows[0];
+    const [username, pictureUrl, description, contactInfo, showContact] = result.rows[0];
+
+    const categoriesResult = await client.query(
+        `
+            select b.category_id, c.name, b.description
+                from impression
+                join account_category a on a.account_id = receiver_id
+                join account_category b on b.account_id = subject_id and b.category_id = a.category_id
+                join category         c on c.id = a.category_id
+            where a.account_id = $1
+              and a.enabled = true
+              and b.enabled = true
+        `,
+        [accountId],
+    );
+
+    const categories = categoriesResult.rows.map(([id, name, description]) => ({ id, name, description }))
 
     response.status(200);
     response.json({
@@ -62,6 +92,11 @@ account.get("/", async (request: Request, response: Response) => {
         username,
         pictureUrl,
         description,
-        contactInfo,
+        contactInfo: showContact ? contactInfo : null,
+        categories,
     });
 });
+
+// TODO: post / to set impression.accepted
+// if we set it to true and impression.inverse_id is null, generate a new impression
+// with receiver_id and subject_id reversed, populate inverse_id's accordingly, etc.

@@ -1,15 +1,38 @@
 .body {
   width: 100vw;
   height: 100vh;
+  //background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/images/signup.jpg');
+  background-image: url(../../assets/images/signup.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
   .inputs {
     position: absolute;
     bottom: 25%;
     display: flex;
-    height: 10rem;
+    height: 30rem;
     width: 100%;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    .inputItem{
+      display: flex;
+      flex-direction: column;
+    }
+    label{
+      font-size: 20px;
+      color: white;
+    }
+    input{
+      width: 14rem;
+      font-size: 20px;
+    }
+    button{
+      height: 5rem; 
+      width: 10rem;
+      border-radius: 5rem; 
+      font-size: 20px;
+    }
   }
 }

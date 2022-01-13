@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
-
+export class SignUpComponent implements OnInit {  
   constructor(private router: Router) { }
 
   ngOnInit(): void {

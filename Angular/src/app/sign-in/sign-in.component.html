@@ -1,9 +1,19 @@
 <div class="body">
   <div class="form">
-    <label for="">Email</label>
-    <input type="text">
-    <label for="">Password</label>
-    <input type="text">
-    <button (click)="login()">Login</button>
+    <div class="logo">
+      <img src="../../assets/images/logo.png" alt="image">
+    </div>
+
+    <div class="inputItem">
+      <label for="username">Email</label>
+      <input type="text" placeholder="email@example.com">
+    </div>
+
+    <div class="inputItem">
+      <label for="password">Password</label>
+      <input type="text">
+    </div>
+
+    <button mat-raised-button color="primary" (click)="login()">Login</button>
   </div>
 </div>

@@ -42,7 +42,7 @@ import {MatButtonModule} from '@angular/material/button';
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig,
-    }
+    },
     BrowserAnimationsModule,
     MatButtonModule
   ],

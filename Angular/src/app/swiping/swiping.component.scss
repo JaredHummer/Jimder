@@ -1,13 +1,19 @@
 .body {
   height: 100vh;
+  .header {
+    height: 15%;
+    .profile {
+      float: right;
+    }
+  }
   .main-image {
-    height: 95%;
+    height: 70%;
     width: 100%;
     border-radius: 1rem;
 
   }
   .footer {
-    height: 5%;
+    height: 15%;
     .buttons {
       height: 100%;
       button {

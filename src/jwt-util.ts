@@ -1,5 +1,6 @@
 import { readFile } from "fs/promises";
 import { JsonWebTokenError, sign, verify } from "jsonwebtoken"
+import { idText } from "typescript";
 
 export const secret = await readFile("/secrets/jwt");
 

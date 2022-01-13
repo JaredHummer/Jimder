@@ -64,7 +64,7 @@ export const create = async (request: Request, response: Response) => {
         return;
     }
 
-    const [id] = result.rows[0];
+    const id = result.rows[0].id;
 
     response.status(200);
     response.json({

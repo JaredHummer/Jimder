@@ -36,15 +36,15 @@ import {MatButtonModule} from '@angular/material/button';
     NgbModule,
     HttpClientModule,
     StoreModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig,
     }
-    BrowserAnimationsModule,
-    MatButtonModule
   ],
   bootstrap: [AppComponent]
 })

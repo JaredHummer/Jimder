@@ -1,9 +1,19 @@
 <div class="body">
   <div class="form">
-    <label for="">Email</label>
-    <input [(ngModel)]="username" type="text">
-    <label for="">Password</label>
-    <input [(ngModel)]="password" type="text">
-    <button (click)="login()">Login</button>
+    <div class="logo">
+      <img src="../../assets/images/logo.png" alt="image">
+    </div>
+
+    <div class="inputItem">
+      <label for="username">Email</label>
+      <input [(ngModel)]="username" type="text" placeholder="email@example.com">
+    </div>
+
+    <div class="inputItem">
+      <label for="password">Password</label>
+      <input [(ngModel)]="password" type="text">
+    </div>
+
+    <button mat-raised-button color="primary" (click)="login()">Login</button>
   </div>
 </div>

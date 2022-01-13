@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { token } from 'morgan';
 import { AccountService } from '../services/account.service';
 
 @Component({

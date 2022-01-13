@@ -1,12 +1,25 @@
 <div class="body">
   <div class="inputs">
-    <label for="username">Username</label>
-    <input [(ngModel)]="username" type="text">
-    <label for="password">Password</label>
-    <input [(ngModel)]="password" type="text">
-    <label for="confirm-password">Confirm Password</label>
-    <input [(ngModel)]="confirm" type="text">
-    <button (click)="signUp()">Sign Up</button>
+    <div class="logo">
+      <img src="../../assets/images/logo.png" alt="image">
+    </div>
+    <div class="inputItem">
+      <label for="username">Email</label>
+      <input [(ngModel)]="username" type="text" placeholder="email@example.com">
+    </div>
+
+    <div class="inputItem">
+      <label for="password">Password</label>
+      <input [(ngModel)]="password" type="text">
+    </div>
+
+    <div class="inputItem">
+      <label for="confirm-password">Confirm Password</label>
+      <input [(ngModel)]="confirm" type="text">
+    </div>
+    
+    
+    <button mat-raised-button color="primary" (click)="signUp()">Sign Up</button>
   </div>
 
 </div>

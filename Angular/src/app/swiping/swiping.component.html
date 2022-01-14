@@ -10,8 +10,10 @@
   <div class="logo">
     <img src="../../assets/images/logo.png" alt="image">
   </div>
-  <img (click)="showInfo()" (swipeleft)="swipeLeft()" class="main-image"
-    src="{{ currentImpression?.account_info?.picture_url }}" alt="">
+  <div (click)="showInfo()" (swipeleft)="swipeLeft()" class="container">
+    <img class="main-image" src="{{currentImpression.account_info.picture_url}}" alt="">
+    <div class="username">{{currentImpression.account_info.username}}</div>
+  </div>
   <div class="footer">
     <div class="buttons">
       <button mat-fab color="primary" (click)="swipeLeft()">

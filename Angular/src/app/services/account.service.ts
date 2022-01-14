@@ -68,6 +68,12 @@ export class AccountService {
     })
   }
 
+  getMatches() {
+    let headers = new HttpHeaders().set("Accept", "*/*").set("Authorization", localStorage.getItem("token") || "");
+
+    return this.http.get(environment.apiUrl + EndPoints.goodImpression, {headers})
+  }
+
   errorhandler(error: any) {
     console.error(error);
     if (error.error.error)

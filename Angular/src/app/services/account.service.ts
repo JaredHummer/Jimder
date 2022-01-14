@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -48,6 +48,17 @@ export class AccountService {
     let headers = new HttpHeaders().set("Accept", "*/*").set("Authorization", localStorage.getItem("token") || "");
 
     return this.http.get(environment.apiUrl + EndPoints.allCategories, {headers})
+  }
+
+  getCategory(categoryId: number) {
+    let headers = new HttpHeaders().set("Accept", "*/*").set("Authorization", localStorage.getItem("token") || "");
+    let queryParam = new HttpParams().set("categoryId", categoryId);
+
+    return new Promise<any> ((resolve: any, rej: any) => {
+      this.http.get(environment.apiUrl + EndPoints.category, {headers: headers, params: queryParam}).subscribe((res: any) => {
+        resolve(res);
+      })
+    })
   }
 
   errorhandler(error: any) {

@@ -16,9 +16,27 @@ export class ProfileEditorComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.accountService.getCategories().subscribe((res: any) => {
+    this.setCategories();
+  }
+
+  async setCategories() {
+    this.accountService.getCategories().subscribe(async (res: any) => {
       if (res.success) {
-        this.categories = res.categories;
+        for (let [index, category] of res.categories.entries()) {
+          this.categories[index] = {} as Category;
+          this.categories[index].name = category.name;
+          this.categories[index].id = category.id;
+          this.categories[index].icon_url = category.icon_url;
+
+          let temp = await this.accountService.getCategory(category.id);
+
+          let htmlCat = document.getElementById(category.id) as HTMLInputElement;
+          htmlCat.checked = temp.enabled;
+
+          this.categories[index].description = temp.description;
+          this.categories[index].enabled = temp.enabled;
+        }
+        console.log(this.categories, res);
         this.originalCopy = JSON.parse(JSON.stringify(this.categories));
       }
     })

@@ -3,7 +3,7 @@
     <button (click)="logout()">logout</button>
     <button (click)="moveProfile()" class="profile">Profile</button>
   </div>
-  <img (click)="showInfo()" (swipeleft)="swipeLeft()" class="main-image" src="{{ currentImpression.account_info.picture_url }}" alt="">
+  <img (click)="showInfo()" (swipeleft)="swipeLeft()" class="main-image" src="{{ currentImpression?.account_info?.picture_url }}" alt="">
   <div class="footer">
     <div class="buttons">
       <button mat-fab color="primary" (click)="dont()">

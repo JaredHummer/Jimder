@@ -1,6 +1,10 @@
 .body {
   width: 100vw;
   height: 100vh;
+  text-align: center;
+  h1 {
+    margin-top: 1rem;
+  }
   .hobbies {
     display: table;
     flex-direction: column;
@@ -12,5 +16,12 @@
       display: flex;
       width: 100%;
     }
+  }
+
+  button {
+    height: 2.5rem;
+    width: 10rem;
+    border-radius: 5rem;
+    font-size: 20px;
   }
 }

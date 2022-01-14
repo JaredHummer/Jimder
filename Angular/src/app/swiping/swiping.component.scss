@@ -2,6 +2,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  padding: 1rem;
   .header {
     height: 20%;
     .profile {
@@ -29,9 +30,12 @@
     height: 20%;
     .buttons {
       height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
       button {
-        height: 100%;
-        width: 33.33%;
+        height: 7rem;
+        width: 7rem;
         .icon{
           font-size: 50px;
           display: flex;

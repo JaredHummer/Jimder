@@ -1,19 +1,21 @@
 .body {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
   .header {
-    height: 15%;
+    height: 20%;
     .profile {
       float: right;
     }
   }
   .main-image {
-    height: 70%;
+    height: 60%;
     width: 100%;
     border-radius: 1rem;
-
+    align-self: center;
   }
   .footer {
-    height: 15%;
+    height: 20%;
     .buttons {
       height: 100%;
       button {

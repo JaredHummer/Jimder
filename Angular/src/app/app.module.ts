@@ -18,6 +18,7 @@ import { MatchesComponent } from './matches/matches.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import { ImpressionInfoComponent } from './impression-info/impression-info.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatButtonModule} from '@angular/material/button';
     SwipingComponent,
     ProfileEditorComponent,
     LandingComponent,
-    MatchesComponent
+    MatchesComponent,
+    ImpressionInfoComponent
   ],
   imports: [
     BrowserModule,

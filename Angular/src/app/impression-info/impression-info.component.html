@@ -1,0 +1,6 @@
+<div class="body">
+  <img class="main-image" src="{{currentImpression.account_info.picture_url}}" alt="">
+  <div class="info" *ngFor="let category of currentImpression.categories">
+    <p>{{category.name}} : {{category.description}}</p>
+  </div>
+</div>

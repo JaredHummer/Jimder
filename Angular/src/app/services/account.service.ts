@@ -9,6 +9,8 @@ import { EndPoints } from '../models/endPoints';
 })
 export class AccountService {
 
+  currentImpression: any;
+
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {

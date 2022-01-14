@@ -3,6 +3,7 @@ import { z } from "zod";
 
 import { verifyAccount } from "@/jwt-util";
 import { pool } from "@/db";
+import { Client } from "pg";
 
 const postSchema = z.object({
     categoryId:  z.number().positive().int(),
@@ -49,8 +50,6 @@ export const postCategory = async (request: Request, response: Response) => {
         return;
     }
 
-    console.log(accountId);
-
     await pool.query(
         "insert into account_category (account_id, category_id, enabled, description) values ($1, $2, $3, $4) on conflict (account_id, category_id) do update set enabled = $3, description = $4",
         [accountId, body.categoryId, body.enabled, body.description],
@@ -70,6 +69,8 @@ const getSchema = z.object({
 
 export const getCategory = async (request: Request, response: Response) => {
     const accountId = verifyAccount(request.header("authorization") ?? "");
+
+    console.log(accountId, )
 
     if (accountId === null) {
         response.status(401);
@@ -110,7 +111,7 @@ export const getCategory = async (request: Request, response: Response) => {
     }
 
     const result = await client.query(
-        "select enabled, description from account_category where account_id = $1 and id = $2",
+        "select enabled, description from account_category where account_id = $1 and category_id = $2",
         [accountId, query.categoryId],
     );
     client.release();
@@ -134,3 +135,14 @@ export const getCategory = async (request: Request, response: Response) => {
         description,
     });
 };
+
+export const getAllCategories = async (request: Request, response: Response) => {
+    const client = await pool.connect();
+    const result = await client.query("select * from category")
+
+    response.status(200);
+    response.json({
+        success: true,
+        categories: result.rows
+    });
+}

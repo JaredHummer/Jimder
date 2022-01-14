@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 import { create } from "./create";
 import { login } from "./login";
-import { getCategory, postCategory } from "./category";
+import { getAllCategories, getCategory, postCategory } from "./category";
 
 import { pool } from "@/db";
 import { verifyAccount } from "@/jwt-util";
@@ -11,11 +11,22 @@ export const account = Router();
 
 account.get("/category",  getCategory);
 account.post("/category", postCategory);
+account.get("/category/all", getAllCategories);
 account.post("/create",   create);
 account.post("/login",    login);
 
 account.get("/", async (request: Request, response: Response) => {
-    const accountId = verifyAccount(request.header("authorization") ?? "");
+    var accountId = verifyAccount(request.header("authorization") ?? "");
+
+    console.log(request.query);
+
+    if(request.query.accountId !== null) {
+        const other_account = parseInt(String(request.query.accountId));
+        if(other_account != accountId) {
+            const result = await pool.query("", [accountId]);
+            accountId = other_account;
+        }
+    }
 
     if (accountId === null) {
         response.status(401);
@@ -27,7 +38,8 @@ account.get("/", async (request: Request, response: Response) => {
     }
 
     const result = await pool.query("select username, picture_url, description, contact_info from account where id = $1", [accountId]);
-    const [username, pictureUrl, description, contactInfo] = result.rows[0];
+    const res = result.rows[0];
+    const [username, pictureUrl, description, contactInfo] = [res.username, res.picture_url, res.description, res.contact_info];
 
     response.status(200);
     response.json({

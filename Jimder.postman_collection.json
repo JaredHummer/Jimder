@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"gregelous0\",\r\n    \"password\": \"aA0\"\r\n}",
+					"raw": "{\r\n    \"username\": \"bkubaleke\",\r\n    \"password\": \"aA0\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,12 +20,9 @@
 					}
 				},
 				"url": {
-					"raw": "47.17.80.75:9001/account/login",
+					"raw": "localhost:9001/account/login",
 					"host": [
-						"47",
-						"17",
-						"80",
-						"75"
+						"localhost"
 					],
 					"port": "9001",
 					"path": [
@@ -143,7 +140,13 @@
 			"name": "Category update",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjQyMTA4OTEzLCJleHAiOjE2NDIxOTUzMTMsImlzcyI6ImF1dGhuIn0.gCsjFv1c3mYKQM7Yk8kUEFyjS2KFdGipNurrFSWiS48",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"categoryId\":  2,\r\n    \"enabled\":     true,\r\n    \"description\": \"I hate legs\"\r\n}",
@@ -162,6 +165,82 @@
 					"path": [
 						"account",
 						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9001/account/category/all",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"account",
+						"category",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Next Impression",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTY0MjExMTc1MiwiZXhwIjoxNjQyMTk4MTUyLCJpc3MiOiJhdXRobiJ9.m3LLcA8Z0uyZ-sgVZh5vMK5nS7rp78VhQk0smw6G9BA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:9001/impression/next",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"impression",
+						"next"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Good Impression",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTY0MjExMTc1MiwiZXhwIjoxNjQyMTk4MTUyLCJpc3MiOiJhdXRobiJ9.m3LLcA8Z0uyZ-sgVZh5vMK5nS7rp78VhQk0smw6G9BA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:9001/impression",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"impression"
 					]
 				}
 			},

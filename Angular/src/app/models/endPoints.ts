@@ -6,5 +6,6 @@ export enum EndPoints {
   nextPerson = "/impression/next",
   allCategories = "/account/category/all",
   goodImpression = "/impression",
-  accountInfo = "/account"
+  accountInfo = "/account",
+  swipe = "/impression/swipe"
 }

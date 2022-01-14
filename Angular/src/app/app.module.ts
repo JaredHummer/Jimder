@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { ImpressionInfoComponent } from './impression-info/impression-info.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ImpressionInfoComponent } from './impression-info/impression-info.compo
     StoreModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [
     {

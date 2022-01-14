@@ -4,16 +4,18 @@ import { next } from "./next";
 import { pool } from "@/db";
 import { z } from "zod";
 import { verifyAccount } from "@/jwt-util";
+import { postSwipe } from "./swipe";
 
-export const account = Router();
+export const impression = Router();
+
+impression.post("/next", next);
+impression.post("/swipe", postSwipe);
 
 const schema = z.object({
     impressionId: z.number().positive().int().optional(),
 });
 
-account.post("/next", next);
-
-account.get("/", async (request: Request, response: Response) => {
+impression.get("/", async (request: Request, response: Response) => {
     const accountId = verifyAccount(request.header("authorization") ?? "");
 
     if (accountId === null) {
@@ -40,8 +42,18 @@ account.get("/", async (request: Request, response: Response) => {
     const client = await pool.connect();
 
     if (query.impressionId === undefined) {
-        const result = await client.query("select subject_id from impression where receiver_id = $1 and accepted = true", [accountId]);
-        const matches = result.rows.map(([match]) => match);
+        const result = await client.query(`
+        select account.username, account.picture_url, account.description, account.contact_info from account 
+        join impression on account.id = impression.subject_id
+	    where impression.receiver_id = $1 and accepted = true`, [accountId]);
+
+        const result2 = await client.query(`
+        select account.username, account.picture_url, account.description, account.contact_info from account 
+        join impression on account.id = impression.receiver_id
+	    where impression.subject_id = $1 and accepted = true`, [accountId])
+        
+        console.log(result.rows);
+        const matches = result.rows.concat(result2.rows);
 
         client.release();
 

@@ -1,12 +1,12 @@
 import { argon2id, hash, verify } from "argon2";
 
 export const hashPassword = async (password: string): Promise<string | null> => {
-    if (!/^.{3,}$/.test(password)
-        || !/[a-z]/.test(password)
-        || !/[A-Z]/.test(password)
-        || !/[0-9]/.test(password)) {
-        return null;
-    }
+    // if (!/^.{3,}$/.test(password)
+    //     || !/[a-z]/.test(password)
+    //     || !/[A-Z]/.test(password)
+    //     || !/[0-9]/.test(password)) {
+    //     return null;
+    // }
 
     return await hash(password, {
         type: argon2id,

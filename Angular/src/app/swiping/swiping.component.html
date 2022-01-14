@@ -1,7 +1,14 @@
 <div class="body">
   <div class="header">
-    <button (click)="logout()">logout</button>
-    <button (click)="moveProfile()" class="profile">Profile</button>
+    <button mat-fab color="primary" (click)="logout()">
+      <mat-icon class="icon">exit_to_app</mat-icon>
+    </button>
+    <button mat-fab color="primary" (click)="moveProfile()" class="profile">
+      <mat-icon class="icon">edit</mat-icon>
+    </button>
+  </div>
+  <div class="logo">
+    <img src="../../assets/images/logo.png" alt="image">
   </div>
   <img (click)="showInfo()" (swipeleft)="swipeLeft()" class="main-image" src="{{ currentImpression?.account_info?.picture_url }}" alt="">
   <div class="footer">

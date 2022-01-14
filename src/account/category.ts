@@ -137,12 +137,18 @@ export const getCategory = async (request: Request, response: Response) => {
 };
 
 export const getAllCategories = async (request: Request, response: Response) => {
+    console.log("start");
     const client = await pool.connect();
+    console.log("pool get");
     const result = await client.query("select * from category")
+
+    client.release(true);
 
     response.status(200);
     response.json({
         success: true,
         categories: result.rows
     });
+    console.log("end");
+    return;
 }

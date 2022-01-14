@@ -29,14 +29,16 @@ export const postSwipe = async (request: Request, response: Response) => {
     const checkImpressionExists = await client.query("select id from impression where receiver_id = $1 and subject_id = $2 limit 1", [accountId, body.other_id])
 
     if(checkImpressionExists.rows.length === 1) {
-        client.query("update impression set accepted = $1 where id = $2", [body.swipe, checkImpressionExists.rows[0].id]);
+        await client.query("update impression set accepted = $1 where id = $2", [body.swipe, checkImpressionExists.rows[0].id]);
     }
     else {
         if(body.swipe)
-            client.query("insert into impression (receiver_id, subject_id) values ($1, $2)", [body.other_id, accountId]);
+            await client.query("insert into impression (receiver_id, subject_id) values ($1, $2)", [body.other_id, accountId]);
         else
-            client.query("insert into impression (receiver_id, subject_id, accepted) values ($1, $2, false)", [body.other_id, accountId]);
+            await client.query("insert into impression (receiver_id, subject_id, accepted) values ($1, $2, false)", [body.other_id, accountId]);
     }
+
+    client.release(true);
 
     response.status(200);
     response.json({

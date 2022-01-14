@@ -18,7 +18,17 @@ export class SwipingComponent implements OnInit {
   }
 
   swipeLeft() {
-    console.log("swiped left");
+    this.accountService.swipePerson(this.currentImpression.account_info.other_id, false).subscribe((res: any) => {
+      console.log(res);
+      this.next();
+    });
+  }
+
+  swipeRight() {
+    this.accountService.swipePerson(this.currentImpression.account_info.other_id, true).subscribe((res: any) => {
+      console.log(res);
+      this.next();
+    });
   }
 
   dont() {

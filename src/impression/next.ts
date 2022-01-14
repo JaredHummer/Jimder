@@ -25,6 +25,8 @@ export const next = async (request: Request, response: Response) => {
     );
 
     if (outstandingResult.rows.length === 1) {
+        console.log("outstanding: " + outstandingResult.rows);
+
         client.release();
 
         const id = outstandingResult.rows[0].subject_id;
@@ -41,7 +43,8 @@ export const next = async (request: Request, response: Response) => {
               and b.account_id != a.account_id
               and a.enabled = true
               and b.enabled = true
-              and b.account_id != all(select subject_id from impression where receiver_id = a.account_id)
+              and b.account_id <> all(select receiver_id from impression where subject_id = $1)
+              and b.account_id <> all(select subject_id from impression where receiver_id = $1)
             group by b.account_id
             order by count(1) desc
             limit 1

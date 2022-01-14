@@ -10,16 +10,17 @@
   <div class="logo">
     <img src="../../assets/images/logo.png" alt="image">
   </div>
-  <img (click)="showInfo()" (swipeleft)="swipeLeft()" class="main-image" src="{{ currentImpression?.account_info?.picture_url }}" alt="">
+  <img (click)="showInfo()" (swipeleft)="swipeLeft()" class="main-image"
+    src="{{ currentImpression?.account_info?.picture_url }}" alt="">
   <div class="footer">
     <div class="buttons">
-      <button mat-fab color="primary" (click)="dont()">
+      <button mat-fab color="primary" (click)="swipeLeft()">
         <mat-icon class="icon">thumb_down</mat-icon>
       </button>
       <button mat-fab color="primary" (click)="showMatches()">
         <mat-icon class="icon">forum</mat-icon>
       </button>
-      <button mat-fab color="primary" (click)="match()">
+      <button mat-fab color="primary" (click)="swipeRight()">
         <mat-icon class="icon">thumb_up</mat-icon>
       </button>
     </div>

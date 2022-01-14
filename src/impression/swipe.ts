@@ -12,6 +12,8 @@ const postSchema = z.object({
 export const postSwipe = async (request: Request, response: Response) => {    
     const accountId = verifyAccount(request.header("authorization") ?? "");
 
+    console.log(request.body);
+
     const parse = postSchema.safeParse(request.body);
 
     if (!parse.success) {

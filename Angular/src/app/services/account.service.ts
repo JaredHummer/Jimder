@@ -30,6 +30,13 @@ export class AccountService {
       .pipe(catchError(this.errorhandler))
   }
 
+  swipePerson(person_id: number, direction: boolean) {
+    let headers = new HttpHeaders().set("Accept", "*/*").set("Authorization", localStorage.getItem("token") || "").set("Content-Type", "application/json");
+
+    return this.http.post(environment.apiUrl + EndPoints.swipe, JSON.stringify({other_id: person_id, swipe: direction}), {headers})
+      .pipe(catchError(this.errorhandler))
+  }
+
   nextPerson() {
     let headers = new HttpHeaders().set("Accept", "*/*").set("Authorization", localStorage.getItem("token") || "");
 

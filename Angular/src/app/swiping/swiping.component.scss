@@ -8,6 +8,7 @@
       float: right;
     }
   }
+  
   .logo{
     display: flex;
     flex-direction: column;
@@ -16,15 +17,28 @@
     left: 50%;
     transform: translateX(-50%);
   }
+
+  .container {
+    margin-top: 0.75rem;
+    position: relative;
+  
   .main-image {
     width: 100%;
-    height: 60%;
-    border-radius: 1rem;
-    align-self: center;
-    @media only screen and (min-width: 600px){
-      width: 25rem;
+    height: 50%;
+    .main-image {
+      width: 100%;
+      height: 97%;
+    }
+
+    .username {
+      position: absolute;
+      left: 2rem;
+      bottom: 1.5rem;
+      font-size: 1.3rem;
+      font-weight: 500;
     }
   }
+
   .footer {
     height: 20%;
     .buttons {

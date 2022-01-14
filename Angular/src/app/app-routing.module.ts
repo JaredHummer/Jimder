@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ImpressionInfoComponent } from './impression-info/impression-info.component';
 import { LandingComponent } from './landing/landing.component';
 import { MatchesComponent } from './matches/matches.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'swiping', component: SwipingComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'profile-editor', component: ProfileEditorComponent },
-  { path: 'matches', component: MatchesComponent }
+  { path: 'matches', component: MatchesComponent },
+  { path: "info", component: ImpressionInfoComponent },
 ];
 
 @NgModule({

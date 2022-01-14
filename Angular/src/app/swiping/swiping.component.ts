@@ -14,13 +14,7 @@ export class SwipingComponent implements OnInit {
   constructor(private router: Router, private accountService: AccountService) { }
 
   ngOnInit(): void {
-
-    this.accountService.nextPerson().subscribe((res: any) => {
-      console.log(res);
-      if (res.success) {
-        this.currentImpression = res;
-      }
-    });
+    this.next();
   }
 
   swipeLeft() {
@@ -29,10 +23,22 @@ export class SwipingComponent implements OnInit {
 
   dont() {
     console.log("dont");
+    this.next();
+  }
+
+  next() {
+    this.accountService.nextPerson().subscribe((res: any) => {
+      console.log(res);
+      if (res.success) {
+        this.currentImpression = res;
+        this.accountService.currentImpression = res;
+      }
+    });
   }
 
   match() {
     console.log("match");
+    this.next();
   }
 
   showMatches() {
@@ -46,6 +52,10 @@ export class SwipingComponent implements OnInit {
   logout() {
     localStorage.clear();
     this.router.navigateByUrl("/");
+  }
+
+  showInfo() {
+    this.router.navigateByUrl("/info");
   }
 
 }

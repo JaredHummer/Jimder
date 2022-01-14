@@ -3,7 +3,7 @@
     <button (click)="logout()">logout</button>
     <button (click)="moveProfile()" class="profile">Profile</button>
   </div>
-  <img (swipeleft)="swipeLeft()" class="main-image" src="..." alt="">
+  <img (click)="showInfo()" (swipeleft)="swipeLeft()" class="main-image" src="{{ currentImpression.account_info.picture_url }}" alt="">
   <div class="footer">
     <div class="buttons">
       <button (click)="dont()">
@@ -12,7 +12,7 @@
       <button (click)="showMatches()">
         matches
       </button>
-      <button>
+      <button (click)="match()">
         match
       </button>
     </div>

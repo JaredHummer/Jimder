@@ -5,18 +5,34 @@
   h1 {
     margin-top: 1rem;
   }
+
   .hobbies {
-    display: table;
+    display: flex;
     flex-direction: column;
-  }
-  .hobby {
     width: 100%;
-    justify-content: space-around;
-    .checking {
-      display: flex;
+    margin-bottom: 1rem;
+    .hobby {
       width: 100%;
+      justify-content: space-around;
+      .checking {
+        text-align: center;
+        width: 100%;
+        justify-content: space-around;
+        tr {
+          td {
+            width: 50%;
+          }
+        }
+      }
+      .inputBox {
+        width: 100%;
+        input {
+          width: 100%;
+        }
+      }
     }
   }
+
 
   button {
     height: 2.5rem;

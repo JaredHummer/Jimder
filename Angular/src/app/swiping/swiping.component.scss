@@ -20,33 +20,29 @@
 
   .container {
     margin-top: 0.75rem;
-    height: 60%;
+    height: 50%;
     position: relative;
 
     .main-image {
       width: 100%;
       height: auto;
-      .main-image {
-        width: 100%;
-        height: 97%;
-      }
 
-      .username {
-        position: absolute;
-        left: 2rem;
-        bottom: 1.5rem;
-        font-size: 1.3rem;
-        font-weight: 500;
-      }
+
+    }
+    .username {
+      position: absolute;
+      left: 2rem;
+      bottom: 1rem;
+      font-size: 1.3rem;
+      font-weight: 500;
     }
   }
 
   .description-container {
-    height: 20%;
+    height: 30%;
     overflow-y: scroll;
     .description {
       margin-left: 1rem;
-      margin-top: 2rem;
       font-size: 1.2rem;
       font-weight: 800;
     }

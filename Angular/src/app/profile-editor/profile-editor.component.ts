@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Category } from '../models/Category';
 import { AccountService } from '../services/account.service';
 
@@ -12,7 +13,7 @@ export class ProfileEditorComponent implements OnInit {
   categories: Category[] = [];
   originalCopy: Category[] = [];
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -58,5 +59,7 @@ export class ProfileEditorComponent implements OnInit {
       }
 
     }
+    setTimeout(() => this.router.navigateByUrl("/swiping"), 1000)
+
   }
 }

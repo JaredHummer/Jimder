@@ -6,14 +6,14 @@
   <img (click)="showInfo()" (swipeleft)="swipeLeft()" class="main-image" src="{{ currentImpression.account_info.picture_url }}" alt="">
   <div class="footer">
     <div class="buttons">
-      <button (click)="dont()">
-        dont
+      <button mat-fab color="primary" (click)="dont()">
+        <mat-icon class="icon">thumb_down</mat-icon>
       </button>
-      <button (click)="showMatches()">
-        matches
+      <button mat-fab color="primary" (click)="showMatches()">
+        <mat-icon class="icon">forum</mat-icon>
       </button>
-      <button (click)="match()">
-        match
+      <button mat-fab color="primary" (click)="match()">
+        <mat-icon class="icon">thumb_up</mat-icon>
       </button>
     </div>
 

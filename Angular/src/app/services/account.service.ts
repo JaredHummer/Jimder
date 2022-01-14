@@ -78,6 +78,6 @@ export class AccountService {
     console.error(error);
     if (error.error.error)
       alert(error.error.error);
-    return error;
+    return [];
   }
 }

@@ -7,13 +7,21 @@
       <mat-icon class="icon">edit</mat-icon>
     </button>
   </div>
-  <div class="logo">
+  <!-- <div class="logo">
     <img src="../../assets/images/logo.png" alt="image">
-  </div>
+  </div> -->
   <div (click)="showInfo()" (swipeleft)="swipeLeft()" class="container">
-    <img class="main-image" src="{{currentImpression.account_info.picture_url}}" alt="">
-    <div class="username">{{currentImpression.account_info.username}}</div>
+    <img class="main-image" src="{{currentImpression?.account_info?.picture_url || ''}}" alt="">
+    <div class="username">{{currentImpression?.account_info?.username}}</div>
   </div>
+
+  <div class="description-container">
+    <p class="description">{{currentImpression?.account_info?.description || ''}}</p>
+    <div class="info" *ngFor="let category of currentImpression?.categories">
+      <p>{{category?.name}} : {{category?.description}}</p>
+    </div>
+  </div>
+
   <div class="footer">
     <div class="buttons">
       <button mat-fab color="primary" (click)="swipeLeft()">

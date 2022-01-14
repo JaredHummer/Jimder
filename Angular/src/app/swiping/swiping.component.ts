@@ -9,7 +9,7 @@ import { AccountService } from '../services/account.service';
 })
 export class SwipingComponent implements OnInit {
 
-  currentImpression: any;
+  currentImpression: any //= {categories: [{name: "test", description: "this is a test"}, {name: "test", description: "this is a test"},{name: "test", description: "this is a test"},{name: "test", description: "this is a test"}, {name: "test", description: "this is a test"},{name: "test", description: "this is a test"},{name: "test", description: "this is a test"},]};
 
   constructor(private router: Router, private accountService: AccountService) { }
 
@@ -31,11 +31,6 @@ export class SwipingComponent implements OnInit {
     });
   }
 
-  dont() {
-    console.log("dont");
-    this.next();
-  }
-
   next() {
     this.accountService.nextPerson().subscribe((res: any) => {
       console.log(res);
@@ -44,11 +39,6 @@ export class SwipingComponent implements OnInit {
         this.accountService.currentImpression = res;
       }
     });
-  }
-
-  match() {
-    console.log("match");
-    this.next();
   }
 
   showMatches() {

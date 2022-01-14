@@ -4,12 +4,11 @@
   flex-direction: column;
   padding: 1rem;
   .header {
-    height: 20%;
     .profile {
       float: right;
     }
   }
-  
+
   .logo{
     display: flex;
     flex-direction: column;
@@ -21,27 +20,50 @@
 
   .container {
     margin-top: 0.75rem;
+    height: 60%;
     position: relative;
-  
-  .main-image {
-    width: 100%;
-    height: 50%;
+
     .main-image {
       width: 100%;
-      height: 97%;
-    }
+      height: auto;
+      .main-image {
+        width: 100%;
+        height: 97%;
+      }
 
-    .username {
-      position: absolute;
-      left: 2rem;
-      bottom: 1.5rem;
-      font-size: 1.3rem;
-      font-weight: 500;
+      .username {
+        position: absolute;
+        left: 2rem;
+        bottom: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 500;
+      }
     }
   }
 
+  .description-container {
+    height: 20%;
+    overflow-y: scroll;
+    .description {
+      margin-left: 1rem;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .info {
+      margin-left: 1rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+
+
+
   .footer {
     height: 20%;
+    margin-top: 1rem;
     .buttons {
       height: 100%;
       width: 100%;

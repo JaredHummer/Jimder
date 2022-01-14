@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Category } from '../models/Category';
 import { EndPoints } from '../models/endPoints';
 
 @Injectable({
@@ -36,7 +37,18 @@ export class AccountService {
       .pipe(catchError(this.errorhandler))
   }
 
+  updateCategory(category: Category) {
+    let headers = new HttpHeaders().set("Accept", "*/*").set("Authorization", localStorage.getItem("token") || "").set("Content-Type", "application/json");
 
+    return this.http.post(environment.apiUrl + EndPoints.category, JSON.stringify({categoryId : category.id, enabled: category.enabled, description: category.description}), {headers})
+      .pipe(catchError(this.errorhandler))
+  }
+
+  getCategories() {
+    let headers = new HttpHeaders().set("Accept", "*/*").set("Authorization", localStorage.getItem("token") || "");
+
+    return this.http.get(environment.apiUrl + EndPoints.allCategories, {headers})
+  }
 
   errorhandler(error: any) {
     console.error(error);

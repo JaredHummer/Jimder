@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../models/Category';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-profile-editor',
@@ -8,11 +9,19 @@ import { Category } from '../models/Category';
 })
 export class ProfileEditorComponent implements OnInit {
 
-  categories: Category[] = [{description: "Fitness", icon_url: "test", id: 0, name: "Fitness", enabled: false}, {description: "Reading", icon_url: "test", id: 0, name: "Reading", enabled: false}, {description: "Video Games", icon_url: "test", id: 0, name: "Video Games", enabled: false}];
+  categories: Category[] = [];
+  originalCopy: Category[] = [];
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
+
+    this.accountService.getCategories().subscribe((res: any) => {
+      if (res.success) {
+        this.categories = res.categories;
+        this.originalCopy = JSON.parse(JSON.stringify(this.categories));
+      }
+    })
   }
 
   toggleCategory(category: Category) {
@@ -20,5 +29,16 @@ export class ProfileEditorComponent implements OnInit {
     console.log(category);
   }
 
+  save()
+  {
+    for (let [index, category] of this.categories.entries()) {
+      if (JSON.stringify(category) != JSON.stringify(this.originalCopy[index])) {
 
+        this.accountService.updateCategory(category).subscribe((res: any) => {
+          console.log(res);
+        })
+      }
+
+    }
+  }
 }
